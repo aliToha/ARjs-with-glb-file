@@ -38,7 +38,6 @@
       UI Overlay: This section creates the informational box at the top-left corner.
       It's styled with Tailwind CSS classes.
     -->
-
     <!-- 
       A-Frame AR Scene: This is the core of the AR application.
       - `embedded`: Allows the scene to be placed within a web page.
@@ -46,22 +45,30 @@
       - `vr-mode-ui`: We disable the VR mode button as this is an AR experience.
     -->
     <a-scene
-        embedded
-        arjs="sourceType: webcam; debugUIEnabled: false;"
-        renderer="logarithmicDepthBuffer: true;"
-        vr-mode-ui="enabled: false"
-    >
-        <!-- 
-          Marker: This tells AR.js what to look for in the camera feed.
-          - `preset="hiro"`: Uses a well-known, built-in marker.
-        -->
-       <a-marker-camera type='pattern' url='./asset/pattern-images.patt'></a-marker-camera>
-
-        <!-- 
-          Camera: This is the user's point of view in the 3D scene. 
-          AR.js automatically links this to the device's camera.
-        -->
-        <a-entity camera></a-entity>
-    </a-scene>
+      vr-mode-ui="enabled: false;"
+      renderer="logarithmicDepthBuffer: true;"
+      embedded
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+      <!-- a-nft is the anchor that defines an Image Tracking entity -->
+      <!-- on 'url' use the path to the Image Descriptors created before. -->
+      <!-- the path should end with the name without the extension e.g. if file is trex.fset' the path should end with trex -->
+      <a-nft
+        type="nft"
+        url="./asset/hmns.png"
+        smooth="true"
+        smoothCount="10"
+        smoothTolerance=".01"
+        smoothThreshold="5">
+          <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
+          <a-entity
+          gltf-model="./asset/parfume.gltf"
+              scale="5 5 5"
+              position="100 100 0"
+          >
+          </a-entity>
+      </a-nft>
+    <!-- static camera that moves according to the device movemenents -->
+      <a-entity camera></a-entity>
+    </a-scene> 
 </body>
 </html>
