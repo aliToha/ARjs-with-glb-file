@@ -38,18 +38,6 @@
       UI Overlay: This section creates the informational box at the top-left corner.
       It's styled with Tailwind CSS classes.
     -->
-    <div class="absolute top-5 left-5 z-10 p-4 bg-white/90 rounded-xl shadow-lg font-sans">
-        <h1 class="text-2xl font-bold text-gray-800">Web AR Experience</h1>
-        <p class="text-gray-600 mt-1">Point your camera at the Hiro marker to see the magic!</p>
-        <a
-          href="https://ar-js-org.github.io/AR.js-Docs/images/HIRO.png"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="text-blue-600 hover:underline mt-2 inline-block"
-        >
-          View Marker
-        </a>
-    </div>
 
     <!-- 
       A-Frame AR Scene: This is the core of the AR application.
@@ -67,33 +55,7 @@
           Marker: This tells AR.js what to look for in the camera feed.
           - `preset="hiro"`: Uses a well-known, built-in marker.
         -->
-       <a-marker-camera type='pattern' url='./asset/pattern-images.patt'>
-
-            <!-- 
-              3D Object: This is the content that appears when the marker is detected.
-              - We're creating a simple box.
-              - `position="0 0.5 0"` places it slightly above the marker.
-              - `material`: Defines its appearance (color and opacity).
-            -->
-            <a-box
-                position="0 0.5 0"
-                material="color: mediumseagreen; opacity: 0.9;"
-            >
-                <!-- 
-                  Animation: This makes the box rotate continuously.
-                  - `attribute="rotation"`: We are animating the rotation property.
-                  - `dur="2000"`: The animation takes 2 seconds to complete one cycle.
-                  - `repeat="indefinite"`: The animation loops forever.
-                -->
-                <a-animation
-                    attribute="rotation"
-                    to="360 360 0"
-                    dur="2000"
-                    easing="linear"
-                    repeat="indefinite"
-                ></a-animation>
-            </a-box>
-        </a-marker-camera>
+       <a-marker-camera type='pattern' url='./asset/pattern-images.patt'></a-marker-camera>
 
         <!-- 
           Camera: This is the user's point of view in the 3D scene. 
