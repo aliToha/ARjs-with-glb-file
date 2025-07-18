@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-eval' aframe.io raw.githack.com ">
+    <meta http-equiv="Content-Security-Policy" content="script-src 'unsafe-eval' aframe.io raw.githack.com dpdb.webvr.rocks ">
     <title>Image based tracking AR.js demo</title>
     <!-- import aframe and then ar.js with image tracking / location based features -->
     <script src="https://aframe.io/releases/0.9.2/aframe.min.js"></script>
@@ -41,31 +41,11 @@
       - `arjs`: Configures AR.js. We're using the webcam as the video source.
       - `vr-mode-ui`: We disable the VR mode button as this is an AR experience.
     -->
-    <a-scene
-      vr-mode-ui="enabled: false;"
-      renderer="logarithmicDepthBuffer: true;"
-      embedded
-      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
-      <!-- a-nft is the anchor that defines an Image Tracking entity -->
-      <!-- on 'url' use the path to the Image Descriptors created before. -->
-      <!-- the path should end with the name without the extension e.g. if file is trex.fset' the path should end with trex -->
-      <a-nft
-        type="nft"
-        url="https://a-rjs-with-glb-file.vercel.app/asset/hmns.png"
-        smooth="true"
-        smoothCount="10"
-        smoothTolerance=".01"
-        smoothThreshold="5">
-          <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-          <a-entity
-          gltf-model="https://a-rjs-with-glb-file.vercel.app/asset/parfume.gltf"
-              scale="5 5 5"
-              position="100 100 0"
-          >
-          </a-entity>
-      </a-nft>
-    <!-- static camera that moves according to the device movemenents -->
+    <a-scene embedded arjs>
+      <a-marker preset="hiro">
+          <a-box position='0 0.5 0' material='color: yellow;'></a-box>
+      </a-marker>
       <a-entity camera></a-entity>
-    </a-scene> 
+    </a-scene>
 </body>
 </html>
